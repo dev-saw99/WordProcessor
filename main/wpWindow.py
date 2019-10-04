@@ -1,7 +1,5 @@
-from WordProcessor import Ui_WordProcessor
+from main.WordProcessor import Ui_WordProcessor
 from PyQt5 import QtWidgets
-# from spellcheck import spellcheck
-
 
 class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
 
@@ -26,7 +24,7 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
         self.actionColor.triggered.connect(self.setColor)
 
         '''Buttons'''
-        self.pushButton.clicked.connect(self.checkText)
+        #self.pushButton.clicked.connect(self.checkText)
         self.show()
     
     def newFile(self):
