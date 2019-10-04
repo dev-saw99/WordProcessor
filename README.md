@@ -6,6 +6,7 @@
 ###### It is capable of detecting spelling errors in English language and will be able to suggest words after updates.
 --------------------------------------------------------------------------
 ![WordProcessor](/images/WPLogo.png)
+--------------------------------------------------------------------------
 ![WordProcessor](/images/i2.png)
 
 ###### For images of UI click [here](/images)
