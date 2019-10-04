@@ -1,9 +1,9 @@
 import json
 import re
-import nltk
 
 try:
-    dictionary_data = open('dictionary.txt','r')
+    dictionary_data = open('main/dictionary.txt','r')
+    
 except OSError:
     print('!MISSING_DICTONARY , Run dictionary.py as python script.')
 
@@ -18,23 +18,22 @@ class spellcheck():
         return  re.findall(r'[a-zA-Z_\']+',line)
 
     def Scheck(self,line):
-        correct_suggestion = []
+        suggestion = []
         self.words = [wrd.lower() for wrd in self.get_words(line)]
-        dist=0
         for word in self.words:
             if word in dictionary:
                 continue
             else:
-                dist=999
-                for correct_words in dictionary:
-                    cur_dist = nltk.edit_distance(word,correct_words)
-                    if(cur_dist<dist):
-                        suggestion = correct_words
-                        dist = cur_dist
-
-                correct_suggestion.append(suggestion)
-        return correct_suggestion    
-
+                suggestion.append(word)   
+        return suggestion
     
-sp = spellcheck()
-print(sp.Scheck('hello! this is awesowm prograem good qord is evrything you expect from the dictionay nothing can go well in te gaem ehre its hard to plya with pponnet'))
+
+'''
+Future Work:
+
+Implementation of suggestion for misspelled words.
+Autorcorrect the lines 
+Ignore the errors
+Add to dictionary
+
+'''

@@ -30,6 +30,7 @@ class Ui_WordProcessor(object):
         sizePolicy.setVerticalStretch(4)
         sizePolicy.setHeightForWidth(self.textEdit_2.sizePolicy().hasHeightForWidth())
         self.textEdit_2.setSizePolicy(sizePolicy)
+        self.textEdit_2.setReadOnly(True)
         self.textEdit_2.setObjectName("textEdit_2")
         self.gridLayout_2.addWidget(self.textEdit_2, 1, 3, 1, 1)
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
@@ -38,6 +39,7 @@ class Ui_WordProcessor(object):
         sizePolicy.setVerticalStretch(3)
         sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
         self.textEdit.setSizePolicy(sizePolicy)
+        self.textEdit.setFocus()
         self.textEdit.setObjectName("textEdit")
         self.gridLayout_2.addWidget(self.textEdit, 1, 1, 2, 1)
         self.line_2 = QtWidgets.QFrame(self.centralwidget)
@@ -141,7 +143,7 @@ class Ui_WordProcessor(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.label.setText(_translate("WordProcessor", "Sugesstions"))
+        self.label.setText(_translate("WordProcessor", "Errors"))
         self.pushButton_5.setStatusTip(_translate("WordProcessor", "Correct the spellings"))
         self.pushButton_5.setText(_translate("WordProcessor", "Correct"))
         self.pushButton.setStatusTip(_translate("WordProcessor", "Click to check spellings"))

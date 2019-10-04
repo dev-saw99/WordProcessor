@@ -1,4 +1,5 @@
 from main.WordProcessor import Ui_WordProcessor
+from main.spellchecker import spellcheck
 from PyQt5 import QtWidgets
 
 class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
@@ -24,7 +25,10 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
         self.actionColor.triggered.connect(self.setColor)
 
         '''Buttons'''
-        #self.pushButton.clicked.connect(self.checkText)
+        self.pushButton.clicked.connect(self.checkText)
+        self.pushButton_2.clicked.connect(self.notAvailable)
+        self.pushButton_5.clicked.connect(self.notAvailable)
+        self.pushButton_6.clicked.connect(self.notAvailable)
         self.show()
     
     def newFile(self):
@@ -76,3 +80,31 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
     def setColor(self):
         color = QtWidgets.QColorDialog.getColor()
         self.textEdit.setTextColor(color)
+    spell=spellcheck()
+
+    def checkText(self):
+        self.textEdit_2.clear()
+        text = self.textEdit.toPlainText()
+        text = text.split('\n')
+        cnt = 0
+        for line in text:
+            cnt+=1
+            errors = self.spell.Scheck(line)
+            if errors:
+                self.textEdit_2.append('Line'+str(cnt)+' : '+', '.join(errors))
+
+
+    def notAvailable(self):
+        QtWidgets.QMessageBox.about(self,'Error','Function currently unavailable.')
+
+
+
+'''
+Future Work:
+
+Implementation of suggestion for misspelled words.
+Autorcorrect the lines 
+Ignore the errors
+Add to dictionary
+
+'''
