@@ -37,11 +37,15 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
     
     def openFile(self):
         name = QtWidgets.QFileDialog.getOpenFileName(self,'open file')
-        if name[0]:
+        try:
             file = open(name[0],'r')
-        with file:
-            data = file.read()
-            self.textEdit.setText(data)
+            with file:
+                data = file.read()
+                self.textEdit.setText(data)
+                
+        except IOError:
+            QtWidgets.QMessageBox.about(self,'Warning',"PLease Select the File.")
+        
 
     def saveFile(self):
         filename = QtWidgets.QFileDialog.getSaveFileName(self,'Save File')
