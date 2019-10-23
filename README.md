@@ -18,6 +18,15 @@
   *  NLTK
   
 #### Execution
+  ##### Automatic
+  * Use __requirements.txt__ to install dependencies
+    * Clone the repository
+    * Open terminal/cmd in the current folder
+      ```
+      pip install -r requirements.txt
+      ```
+   __OR__
+   ##### Manual
   * Install all the dependencies 
     * To download Pyhton click [here](https://www.python.org/downloads/) [Windows]
     * Linux has builtin Python 3.7
