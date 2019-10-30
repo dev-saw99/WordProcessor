@@ -1,5 +1,6 @@
 import json
 import re
+from difflib import get_close_matches
 
 try:
     dictionary_data = open('main/dictionary.txt','r')
@@ -9,7 +10,7 @@ except OSError:
 
 dictionary = json.load(dictionary_data)
 
-class spellcheck():
+class spellcheck:
     
     def get_words(self,line):
         
@@ -24,16 +25,26 @@ class spellcheck():
             if word in dictionary:
                 continue
             else:
-                suggestion.append(word)   
+                sugg = get_close_matches(word,n=3,cutoff=0.8,possibilities=dictionary.keys())[0]
+                suggestion.append(sugg)   
         return suggestion
     
+    def spellCorrect(self,line):
+        self.words = [wrd.lower() for wrd in self.get_words(line)]
+        for word in self.words:
+            if word in dictionary:
+                continue
+            else:
+                sugg = get_close_matches(word,n=3,cutoff=0.8,possibilities=dictionary.keys())[0]
+                self.words[self.words.index(word)] = sugg
+        return self.words
 
 '''
 Future Work:
 
-Implementation of suggestion for misspelled words.
-Autorcorrect the lines 
-Ignore the errors
+Implementation of suggestion for misspelled words. (Done)
+Autorcorrect the lines (Done)
+Ignore the errors (Done)
 Add to dictionary
 
 '''

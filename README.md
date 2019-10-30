@@ -28,7 +28,7 @@
    __OR__
    
   * Install all the dependencies 
-    * To download Pyhton click [here](https://www.python.org/downloads/) [Windows]
+    * To download Python click [here](https://www.python.org/downloads/) [Windows]
     * Linux has builtin Python 3.7
     * ```
       pip install PyQt5  

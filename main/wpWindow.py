@@ -25,10 +25,10 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
         self.actionColor.triggered.connect(self.setColor)
 
         '''Buttons'''
-        self.pushButton.clicked.connect(self.checkText)
-        self.pushButton_2.clicked.connect(self.notAvailable)
-        self.pushButton_5.clicked.connect(self.notAvailable)
-        self.pushButton_6.clicked.connect(self.notAvailable)
+        self.pushButton.clicked.connect(self.checkText) #Check for Errors
+        self.pushButton_2.clicked.connect(self.notAvailable) # Add to the dictionary
+        self.pushButton_5.clicked.connect(self.correctText) # Correct the Errors
+        self.pushButton_6.clicked.connect(self.ignoreCheck) # Ignore the spell check correction suggestions
         self.show()
     
     def newFile(self):
@@ -95,7 +95,24 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
             cnt+=1
             errors = self.spell.Scheck(line)
             if errors:
-                self.textEdit_2.append('Line'+str(cnt)+' : '+', '.join(errors))
+                self.textEdit_2.append('Line'+str(cnt)+' Spell Error : '+', '.join(errors))
+            else:
+                self.textEdit_2.append('Line'+str(cnt)+': Looks Good!')
+
+    # Implementation of error ignore and spelling correction is done
+
+    def ignoreCheck(self):
+        self.textEdit_2.clear()
+    
+    def correctText(self):
+        text = self.textEdit.toPlainText()
+        text = text.split('\n')
+        self.textEdit.clear()
+        for line in text:
+            correctErrors = self.spell.spellCorrect(line)
+            self.textEdit.append(' '.join(correctErrors))
+        self.textEdit_2.clear()
+        self.textEdit_2.append("Spellings Corrected!")
 
 
     def notAvailable(self):
@@ -106,9 +123,9 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
 '''
 Future Work:
 
-Implementation of suggestion for misspelled words.
-Autorcorrect the lines 
-Ignore the errors
+Implementation of suggestion for misspelled words. (Done)
+Autorcorrect the lines (Done)
+Ignore the errors (Done)
 Add to dictionary
 
 '''
