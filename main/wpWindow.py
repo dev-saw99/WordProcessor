@@ -95,7 +95,7 @@ class EditorWindow(QtWidgets.QMainWindow,Ui_WordProcessor):
             cnt+=1
             errors = self.spell.Scheck(line)
             if errors:
-                self.textEdit_2.append('Line'+str(cnt)+' : '+', '.join(errors))
+                self.textEdit_2.append('Line'+str(cnt)+' Spell Error : '+', '.join(errors))
 
 
     def notAvailable(self):

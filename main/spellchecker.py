@@ -1,5 +1,6 @@
 import json
 import re
+from difflib import get_close_matches
 
 try:
     dictionary_data = open('main/dictionary.txt','r')
@@ -24,14 +25,15 @@ class spellcheck():
             if word in dictionary:
                 continue
             else:
-                suggestion.append(word)   
+                sugg = get_close_matches(word,n=3,cutoff=0.8,possibilities=dictionary.keys())[0]
+                suggestion.append(sugg)   
         return suggestion
     
 
 '''
 Future Work:
 
-Implementation of suggestion for misspelled words.
+Implementation of suggestion for misspelled words. (Done)
 Autorcorrect the lines 
 Ignore the errors
 Add to dictionary
